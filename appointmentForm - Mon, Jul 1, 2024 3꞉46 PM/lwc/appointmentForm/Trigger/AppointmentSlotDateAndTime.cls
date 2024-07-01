@@ -1,3 +1,13 @@
+trigger AppointmentSlot on Appointment_Slot__c (before insert) {
+    
+    if(trigger.isInsert && trigger.isbefore){
+        AppointmentSlotDateAndTime.appointment(trigger.new);
+        
+    }
+
+}
+
+// Apex Class
 public class AppointmentSlotDateAndTime {
     
     public static void appointment(List<Appointment_Slot__c>acclist){
