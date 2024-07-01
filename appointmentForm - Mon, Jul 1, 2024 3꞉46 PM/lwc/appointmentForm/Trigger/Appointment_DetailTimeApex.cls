@@ -1,3 +1,12 @@
+trigger AppointmentDetailTime on Appointment_Detail__c (before insert) {
+    
+    if(trigger.isInsert && trigger.isbefore){
+        Appointment_DetailTimeApex.AppointmentDetail(trigger.new);
+        
+    }
+
+}
+// apex Class
 public class Appointment_DetailTimeApex {
     
      public static void AppointmentDetail(List<Appointment_Detail__c>acclist){
@@ -8,7 +17,7 @@ public class Appointment_DetailTimeApex {
             for(Appointment_Detail__c existreco:existingDateAndTime){
                 
                 if(con.Appointment_Time__c == existreco.Appointment_Time__c & con.Appointment_Date__c == existreco.Appointment_Date__c){
-                    con.addError('This Slot time is already exit:'+con.Appointment_Date__c+''+con.Appointment_Time__c);
+                    con.addError('The selected appointment time is already booked:'+con.Appointment_Date__c+''+con.Appointment_Time__c);
                 }
             }
             
