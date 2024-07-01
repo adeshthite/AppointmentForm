@@ -1,3 +1,13 @@
+trigger AppointmentDetailTime on Appointment_Detail__c (before insert) {
+    
+    if(trigger.isInsert && trigger.isbefore){
+        Appointment_DetailTimeApex.AppointmentDetail(trigger.new);
+        
+    }
+
+}
+
+// Apex Class
 public class Appointment_DetailTimeApex {
     
      public static void AppointmentDetail(List<Appointment_Detail__c>acclist){
